@@ -51,6 +51,7 @@
   /* 6. Formes, Angles & Géométrie (Photon Brut & Low-tech) */
   --general-radius: 2px;                        /* Arrondi général (2px pour angles francs Photon) */
   --tab-height: 25px;                           /* Hauteur exacte Photon des onglets */
+  --tabstrip-margin-top: 2px;                   /* Marge au-dessus des onglets (0px sous Crunchy, 2px hors Crunchy) */
   --urlbar-height: 28px;                        /* Hauteur compacte de la barre d'adresse */
 
   /* ========================================================================
@@ -676,6 +677,7 @@ input::selection {
   --tab-min-height: var(--tab-height) !important;
   --tab-block-margin: 0 !important;
   --tab-margin-block: 0 !important;
+  margin-top: var(--tabstrip-margin-top, 0px) !important;
   margin-bottom: 0px !important;
   padding: 0 !important;
   border-bottom: none !important;
