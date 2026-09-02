@@ -1,0 +1,10 @@
+/* ==========================================================================
+   USERCHROME.CSS - CHOIX DE LA VARIANTE
+   Décommentez la variante que vous souhaitez activer :
+   ========================================================================== */
+
+/* 1. VARIANTE CLAIRE (ACTIVE PAR DÉFAUT) */
+@import "variantes/theme-clair.css";
+
+/* 2. VARIANTE SOMBRE (PHOTON VERT & ACCENTS ORGANIQUES) */
+/* @import "variantes/theme-sombre.css"; */

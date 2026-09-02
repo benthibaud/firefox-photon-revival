@@ -1,0 +1,1372 @@
+/* ==========================================================================
+   VARIANTE SOMBRE — THÈME PHOTON ÉPURÉ & BRUT
+   Architecture de Design Tokens à deux niveaux :
+   1. VARIABLES GÉNÉRALES : Modifiez ici pour changer l'ensemble du thème en quelques secondes.
+   2. VARIABLES SPÉCIFIQUES : Pointent par défaut vers les variables générales,
+      surchargeables indépendamment pour du sur-mesure pixel-perfect.
+   ========================================================================== */
+
+:root {
+  /* ========================================================================
+     A. VARIABLES GÉNÉRALES (GLOBAL TOKENS)
+     ======================================================================== */
+
+  /* 1. Typographie & Textes */
+  --text-on-dark: #ffffff;                      /* Texte principal clair sur surfaces sombres */
+  --text-on-dark-muted: #b0b0b8;                /* Texte secondaire / descriptions / raccourcis */
+  --text-on-light: #18181b;                     /* Texte principal sombre sur surfaces claires */
+  --text-on-light-muted: #6b7280;               /* Texte secondaire sombre */
+
+  /* 2. Surfaces Sombres (Menus contextuels, Popups, URLbar) */
+  --surface-dark-bg: linear-gradient(to right, #18181c 0%, #222226 55%, #2a2a30 100%);
+  --surface-dark-solid: #1e1e24;                /* Teinte sombre solide de repli */
+  --surface-dark-border: #33333c;               /* Bordure sombre nette */
+  --surface-dark-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+  --surface-dark-separator: rgba(255, 255, 255, 0.15);
+  --surface-dark-input-bg: rgba(255, 255, 255, 0.08);
+  --surface-dark-input-border: rgba(255, 255, 255, 0.25);
+  --surface-dark-btn-bg: rgba(255, 255, 255, 0.12);
+  --surface-dark-btn-hover: rgba(255, 255, 255, 0.22);
+
+  /* 3. Surfaces Claires (Pour panneaux ou variantes claires) */
+  --surface-light-bg: #ffffff;                  /* Fond clair uni */
+  --surface-light-solid: #ffffff;
+  --surface-light-border: #d1d5db;              /* Bordure claire */
+  --surface-light-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --surface-light-separator: rgba(0, 0, 0, 0.1);
+  --surface-light-input-bg: #f4f5f7;
+  --surface-light-input-border: #d1d5db;
+  --surface-light-btn-bg: #e4e4e7;
+  --surface-light-btn-hover: #d4d4d8;
+
+  /* 4. Accent Vert Organique (Brut & Low-Tech) */
+  --accent-color: linear-gradient(to right, #1b6630 0%, #2e9e4d 55%, #3ddc84 100%);
+  --accent-solid: #3ddc84;                      /* Teinte solide pour contours, bordures et focus */
+  --accent-hover: #2e9e4d;                      /* Teinte survol */
+  --selection-text: var(--text-on-dark);        /* Texte sur fond accentué */
+
+  /* 5. Liens & Navigation */
+  --link-color: #96aaff !important;            /* Couleur générale des liens hypertexte */
+
+  /* 6. Formes, Angles & Géométrie (Photon Brut & Low-tech) */
+  --general-radius: 2px;                        /* Arrondi général (2px pour angles francs Photon) */
+  --tab-height: 25px;                           /* Hauteur exacte Photon des onglets */
+  --urlbar-height: 28px;                        /* Hauteur compacte de la barre d'adresse */
+
+  /* ========================================================================
+     B. VARIABLES SPÉCIFIQUES (SURCHARGES SUR-MESURE PAR COMPOSANT)
+     Chaque variable hérite des tokens généraux ci-dessus.
+     ======================================================================== */
+
+  /* 1. Bandeau d'onglets & Barre d'outils */
+  --bg-tabstrip: #242321;
+  --bg-navbar: #444450;
+  --bg-tab-active: var(--bg-navbar);
+  --border-color: #575766 !important;
+  --text-active: var(--text-on-dark);
+  --text-inactive: #a1a1aa;
+  --bg-tab-inactive: rgba(255, 255, 255, 0.08);
+  --bg-tab-hover: rgba(255, 255, 255, 0.19);
+  --text-tab-hover: var(--text-on-dark);
+  --tab-separator: rgba(255, 255, 255, 0.24);
+
+  /* 2. Boutons de fermeture d'onglets (Croix) */
+  --tab-close-color: var(--text-active);
+  --tab-close-color-inactive: var(--text-inactive);
+  --tab-close-hover-color: var(--text-on-dark);
+  --tab-close-hover-bg: rgba(255, 255, 255, 0.18);
+
+  /* 3. Menus contextuels déroulants (Clic droit, Barre de menus) */
+  --menu-background: var(--surface-dark-bg);
+  --menu-bg-solid: var(--surface-dark-solid);
+  --menu-text: var(--text-on-dark);
+  --menu-text-muted: var(--text-on-dark-muted);
+  --menu-border-color: var(--surface-dark-border);
+  --menu-separator-color: var(--surface-dark-separator);
+  --menu-shadow: var(--surface-dark-shadow);
+
+  /* 4. Barre d'adresses URL & Menu Application (#appMenu-popup) */
+  --menu-url-background: var(--surface-dark-solid);
+  --menu-url-text: var(--text-on-dark);
+  --urlbar-box-background-color: rgba(255, 255, 255, 0.06);
+  --urlbar-border-color: var(--surface-dark-border);
+  --urlbar-focus-border: var(--accent-solid);
+
+  /* Tokens natifs Firefox pour panneaux Arrow */
+  --panel-background: var(--menu-background) !important;
+  --panel-background-color: var(--menu-bg-solid) !important;
+  --panel-color: var(--menu-text) !important;
+  --panel-border-color: var(--menu-border-color) !important;
+  --panel-border-radius: var(--general-radius) !important;
+  --panel-box-shadow: var(--menu-shadow) !important;
+  --panel-separator-color: var(--menu-separator-color) !important;
+
+  --arrowpanel-border-color: var(--menu-border-color) !important;
+  --arrowpanel-background: var(--menu-url-background) !important;
+  --arrowpanel-color: var(--menu-url-text) !important;
+  --arrowpanel-border-radius: var(--general-radius) !important;
+
+  --button-background-color-hover: var(--accent-solid) !important;
+  --button-background-color-active: var(--accent-solid) !important;
+
+  /* 5. Moteurs de recherche (Search Mode Switcher) */
+  --search-panel-bg: var(--surface-dark-bg);
+  --search-panel-bg-solid: var(--surface-dark-solid);
+  --search-panel-text: var(--text-on-dark);
+  --search-panel-text-muted: var(--text-on-dark-muted);
+  --search-panel-border: var(--surface-dark-border);
+  --search-panel-border-radius: var(--general-radius);
+  --search-panel-shadow: var(--surface-dark-shadow);
+  --search-panel-separator: var(--surface-dark-separator);
+  --search-panel-accent-solid: var(--accent-solid);
+  --search-panel-accent-text: var(--selection-text);
+
+  /* 6. Panneau Marque-pages / Étoile (#editBookmarkPanel) */
+  --bookmark-panel-bg: var(--surface-dark-bg);
+  --bookmark-panel-bg-solid: var(--surface-dark-solid);
+  --bookmark-panel-text: var(--text-on-dark);
+  --bookmark-panel-text-muted: var(--text-on-dark-muted);
+  --bookmark-panel-border: var(--surface-dark-border);
+  --bookmark-panel-border-radius: var(--general-radius);
+  --bookmark-panel-shadow: var(--surface-dark-shadow);
+  --bookmark-panel-separator: var(--surface-dark-separator);
+  --bookmark-input-bg: var(--surface-dark-input-bg);
+  --bookmark-input-text: var(--text-on-dark);
+  --bookmark-input-border: var(--surface-dark-input-border);
+  --bookmark-input-focus-border: var(--accent-solid);
+  --bookmark-button-bg: var(--surface-dark-btn-bg);
+  --bookmark-button-text: var(--text-on-dark);
+  --bookmark-button-hover-bg: var(--surface-dark-btn-hover);
+  --bookmark-primary-bg: var(--accent-color);
+  --bookmark-primary-solid: var(--accent-solid);
+  --bookmark-primary-text: var(--selection-text);
+  --bookmark-primary-hover-bg: var(--accent-hover);
+
+  /* 7. Sécurité du site & Protections (#identity-popup, #protections-popup) */
+  --identity-box-bg: transparent;
+  --identity-box-hover-bg: rgba(255, 255, 255, 0.12);
+  --identity-box-active-bg: var(--accent-solid);
+  --identity-box-text: var(--text-on-dark);
+  --identity-panel-bg: var(--surface-dark-bg);
+  --identity-panel-bg-solid: var(--surface-dark-solid);
+  --identity-panel-text: var(--text-on-dark);
+  --identity-panel-text-muted: var(--text-on-dark-muted);
+  --identity-panel-border: var(--surface-dark-border);
+  --identity-panel-border-radius: var(--general-radius);
+  --identity-panel-shadow: var(--surface-dark-shadow);
+  --identity-panel-hover-bg: var(--accent-color);
+  --identity-panel-hover-text: var(--selection-text);
+  --identity-card-bg: rgba(255, 255, 255, 0.08);
+  --identity-card-border: rgba(255, 255, 255, 0.15);
+
+  /* 8. Traductions (#full-page-translations-panel) */
+  --translations-button-hover-bg: rgba(255, 255, 255, 0.12);
+  --translations-button-active-bg: var(--accent-solid);
+  --translations-panel-bg: var(--surface-dark-bg);
+  --translations-panel-bg-solid: var(--surface-dark-solid);
+  --translations-panel-text: var(--text-on-dark);
+  --translations-panel-text-muted: var(--text-on-dark-muted);
+  --translations-panel-border: var(--surface-dark-border);
+  --translations-panel-border-radius: var(--general-radius);
+  --translations-panel-shadow: var(--surface-dark-shadow);
+  --translations-input-bg: var(--surface-dark-input-bg);
+  --translations-input-text: var(--text-on-dark);
+  --translations-input-border: var(--surface-dark-input-border);
+  --translations-input-focus-border: var(--accent-solid);
+  --translations-primary-bg: var(--accent-color);
+  --translations-primary-solid: var(--accent-solid);
+  --translations-primary-text: var(--selection-text);
+  --translations-primary-hover-bg: var(--accent-hover);
+  --translations-button-bg: var(--surface-dark-btn-bg);
+  --translations-button-text: var(--text-on-dark);
+  --translations-button-hover-bg: var(--surface-dark-btn-hover);
+  /* 9. Messages au survol (Tooltips & Infobulles) */
+  --tooltip-bg: var(--surface-dark-solid);
+  --tooltip-text: var(--text-on-dark);
+  --tooltip-border: transparent;                /* Bordures transparentes */
+  --tooltip-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   1. CROIX DE FERMETURE DES ONGLETS
+   Configurable via : --tab-close-color, --tab-close-color-inactive, etc.
+   ========================================================================== */
+
+.tab-close-button {
+  -moz-context-properties: fill, fill-opacity, stroke !important;
+  fill: var(--tab-close-color) !important;
+  color: var(--tab-close-color) !important;
+  width: 14px !important;
+  height: 14px !important;
+  min-height: 14px !important;
+  padding: 1px !important;
+  margin-inline-start: 4px !important;
+  margin-inline-end: 2px !important;
+  border-radius: var(--general-radius) !important;
+  opacity: 1 !important;
+}
+
+/* Croix sur onglets inactifs */
+.tabbrowser-tab:not([selected]):not([visuallyselected]) .tab-close-button {
+  fill: var(--tab-close-color-inactive) !important;
+  color: var(--tab-close-color-inactive) !important;
+}
+
+/* Survol de la croix */
+.tab-close-button:hover {
+  fill: var(--tab-close-hover-color) !important;
+  color: var(--tab-close-hover-color) !important;
+  background-color: var(--tab-close-hover-bg) !important;
+}
+
+/* ==========================================================================
+   2. MENUS CONTEXTUELS DéROULANTS (CLIC DROIT, BARRE DE MENUS, POPUPS)
+   ========================================================================== */
+
+menupopup,
+.menupopup-arrowscrollbox,
+#contentAreaContextMenu {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: var(--menu-background) !important;
+  background-color: var(--menu-bg-solid) !important;
+  color: var(--menu-text) !important;
+  border: 1px solid var(--menu-border-color) !important;
+  border-radius: var(--general-radius) !important;
+  box-shadow: var(--menu-shadow) !important;
+  outline: none !important;
+  padding: 0 !important;
+}
+
+/* Prise en charge Shadow DOM Firefox moderne */
+menupopup::part(content) {
+  background: var(--menu-background) !important;
+  color: var(--menu-text) !important;
+  border: 1px solid var(--menu-border-color) !important;
+  border-radius: var(--general-radius) !important;
+  box-shadow: var(--menu-shadow) !important;
+}
+
+menuseparator,
+#contentAreaContextMenu menuseparator,
+.menupopup-arrowscrollbox menuseparator {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  border: none !important;
+  border-top: 1px solid var(--menu-separator-color) !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: 4px 6px !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+menuitem,
+menu {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  color: var(--menu-text) !important;
+  padding: 4px 12px !important;
+  background: transparent !important;
+}
+
+menuitem > .menu-text,
+menu > .menu-text,
+menuitem > .menu-iconic-text,
+.menu-accel {
+  color: var(--menu-text) !important;
+}
+
+/* Survol & Sélection avec --accent-color */
+menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]),
+menu:is(:hover, [_moz-menuactive="true"], [selected="true"]) {
+  background: var(--accent-color) !important;
+  color: var(--selection-text) !important;
+}
+
+menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-text,
+menu:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-text,
+menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-iconic-text,
+menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-accel {
+  color: var(--selection-text) !important;
+}
+
+/* ==========================================================================
+   3. MENU D'APPLICATION (#appMenu-popup)
+   Piloté par : --menu-url-background, --menu-url-text, --accent-color
+   ========================================================================== */
+
+#appMenu-popup,
+#appMenu-popup::part(content),
+#appMenu-popup panelview,
+#appMenu-popup .panel-subview-body,
+#appMenu-popup .panel-viewcontainer,
+#appMenu-popup panelmultiview,
+#appMenu-multiView {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: var(--menu-background) !important;
+  background-color: var(--menu-bg-solid) !important;
+  color: var(--menu-text) !important;
+  border-color: var(--menu-border-color) !important;
+}
+
+#appMenu-popup::part(content) {
+  border: 1px solid var(--menu-border-color) !important;
+  border-radius: var(--general-radius) !important;
+  box-shadow: var(--menu-shadow) !important;
+  padding: 4px 0 !important;
+}
+
+#appMenu-popup .panel-subview-body {
+  padding: 4px 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Lignes et boutons dans #appMenu-popup */
+#appMenu-popup .subviewbutton,
+#appMenu-popup .toolbaritem-combined-buttons > toolbarbutton {
+  color: var(--menu-text) !important;
+  border-radius: var(--general-radius) !important;
+}
+
+#appMenu-popup .subviewbutton > .toolbarbutton-text,
+#appMenu-popup .subviewbutton > .toolbarbutton-icon,
+#appMenu-popup .subviewbutton-shortcut,
+#appMenu-popup label {
+  color: var(--menu-text) !important;
+  fill: currentColor !important;
+}
+
+#appMenu-popup .subviewbutton::after {
+  color: var(--menu-text) !important;
+  fill: currentColor !important;
+}
+
+/* Survol & Sélection avec --accent-color dans #appMenu-popup */
+#appMenu-popup .subviewbutton:is(:hover, :focus, :focus-visible, [_moz-menuactive="true"]),
+#appMenu-popup .subviewbutton:not([disabled="true"]):is([open], [checked]),
+#appMenu-popup .toolbaritem-combined-buttons > toolbarbutton:is(:hover, :focus, :focus-visible),
+#appMenu-popup .panel-banner-item:is(:hover, :focus, :focus-visible) {
+  background: var(--accent-color) !important;
+  color: var(--selection-text) !important;
+  border-radius: var(--general-radius) !important;
+  outline: none !important;
+}
+
+#appMenu-popup .subviewbutton:is(:hover, :focus, :focus-visible, [_moz-menuactive="true"]) > .toolbarbutton-text,
+#appMenu-popup .subviewbutton:is(:hover, :focus, :focus-visible, [_moz-menuactive="true"]) > .toolbarbutton-icon,
+#appMenu-popup .subviewbutton:is(:hover, :focus, :focus-visible, [_moz-menuactive="true"]) .subviewbutton-shortcut,
+#appMenu-popup .subviewbutton:is(:hover, :focus, :focus-visible, [_moz-menuactive="true"])::after,
+#appMenu-popup .subviewbutton:is(:hover, :focus, :focus-visible, [_moz-menuactive="true"]) label {
+  color: var(--selection-text) !important;
+  fill: var(--selection-text) !important;
+}
+
+/* Contrôles de zoom dans #appMenu-popup */
+#appMenu-zoom-controls > .subviewbutton:is(:hover, :focus, :focus-visible),
+#appMenu-zoom-controls > .subviewbutton:is(:hover, :focus, :focus-visible) > .toolbarbutton-icon,
+#appMenu-zoom-controls > .subviewbutton:is(:hover, :focus, :focus-visible) > .toolbarbutton-text,
+#appMenu-zoomReset-button2:is(:hover, :focus, :focus-visible) > .toolbarbutton-text,
+#appMenu-fullscreen-button2:is(:hover, :focus, :focus-visible) > .toolbarbutton-icon {
+  background: var(--accent-color) !important;
+  color: var(--selection-text) !important;
+  fill: var(--selection-text) !important;
+  border-radius: var(--general-radius) !important;
+}
+
+/* Bannière de compte Sync FxA */
+#appMenu-popup .panel-banner-item,
+#appMenu-popup #appMenu-fxa-status2 {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--menu-text) !important;
+  border: 1px solid var(--menu-border-color) !important;
+  border-radius: var(--general-radius) !important;
+  margin: 4px 6px !important;
+}
+
+#appMenu-popup .panel-banner-item:hover,
+#appMenu-popup #appMenu-fxa-status2:hover {
+  background: var(--accent-color) !important;
+  color: var(--selection-text) !important;
+}
+
+#appMenu-popup .panel-banner-item:hover *,
+#appMenu-popup #appMenu-fxa-status2:hover * {
+  color: var(--selection-text) !important;
+  fill: var(--selection-text) !important;
+}
+
+/* Séparateurs internes de #appMenu-popup */
+#appMenu-popup toolbarseparator,
+#appMenu-popup menuseparator {
+  border: none !important;
+  border-top: 1px solid var(--menu-separator-color) !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: 4px 6px !important;
+  padding: 0 !important;
+  background: none !important;
+}
+
+/* Flèche du panneau */
+.panel-arrow {
+  fill: var(--menu-background) !important;
+  stroke: var(--menu-border-color) !important;
+}
+
+/* ==========================================================================
+   4. LISTE DÉROULANTE DES MOTEURS DE RECHERCHE (SEARCH MODE SWITCHER)
+   Contrôle 100% via variables :root :
+   --search-panel-bg, --search-panel-text, --search-panel-border,
+   --search-panel-accent-solid, --search-panel-accent-text, etc.
+   ========================================================================== */
+
+/* 1. Conteneur Popup Arrow et son Shadow DOM de premier niveau */
+panel.searchmode-switcher-panel,
+panel.searchmode-switcher-panel::part(content) {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: var(--search-panel-bg) !important;
+  background-color: var(--search-panel-bg-solid) !important;
+  color: var(--search-panel-text) !important;
+  border: 1px solid var(--search-panel-border) !important;
+  border-radius: var(--search-panel-border-radius) !important;
+  box-shadow: var(--search-panel-shadow) !important;
+  padding: 4px 0 !important;
+  outline: none !important;
+}
+
+/* 2. Web Component <panel-list> */
+panel-list.searchmode-switcher-panel-list,
+panel-list#searchmode-switcher-panel-list-urlbar,
+#urlbar-searchmode-switcher {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--search-panel-text) !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  /* Injection dans les tokens internes consommés par les Shadow DOM */
+  --panel-list-background-color: transparent !important;
+  --panel-list-border-color: transparent !important;
+  --panel-list-text-color: var(--search-panel-text) !important;
+  --button-background-color-menu-hover: var(--search-panel-accent-solid) !important;
+  --button-text-color-menu-hover: var(--search-panel-accent-text) !important;
+  --button-background-color-menu-active: var(--search-panel-accent-solid) !important;
+  --button-text-color-menu-active: var(--search-panel-accent-text) !important;
+  --focus-outline: none !important;
+}
+
+/* 3. Description d'en-tête ("Pour cette fois-ci, rechercher avec :") */
+.searchmode-switcher-panel-description {
+  color: var(--search-panel-text-muted) !important;
+  font-size: 11.5px !important;
+  padding: 6px 14px 4px 14px !important;
+  margin: 0 !important;
+  background: transparent !important;
+}
+
+/* 4. Séparateur horizontal <hr> */
+panel-list.searchmode-switcher-panel-list > hr,
+panel-list.searchmode-switcher-panel-list::slotted(hr) {
+  border: none !important;
+  border-top: 1px solid var(--search-panel-separator) !important;
+  background: none !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: 4px 8px !important;
+  padding: 0 !important;
+}
+
+/* 5. Boutons de chaque moteur de recherche (Shadow DOM de panel-item via ::part) */
+panel-list.searchmode-switcher-panel-list panel-item::part(button),
+panel-list.searchmode-switcher-panel-list > panel-item::part(button),
+panel-list.searchmode-switcher-panel-list > .searchmode-switcher-panel-search-settings-button::part(button) {
+  color: var(--search-panel-text) !important;
+  fill: currentColor !important;
+  -moz-context-properties: fill, fill-opacity, stroke !important;
+  background-color: transparent !important;
+  background-repeat: no-repeat !important;
+  background-position: 8px center !important;
+  border-radius: var(--search-panel-border-radius) !important;
+  padding: 5px 12px 5px 32px !important;
+  margin: 1px 4px !important;
+  width: calc(100% - 8px) !important;
+  font-size: 12.5px !important;
+  outline: none !important;
+  box-shadow: none !important;
+  transition: background-color 0.1s ease, color 0.1s ease !important;
+}
+
+panel-list.searchmode-switcher-panel-list panel-item::part(label) {
+  color: inherit !important;
+}
+
+/* 6. Survol & Sélection / Focus clavier (Accent color & texte contrasté) */
+panel-list.searchmode-switcher-panel-list panel-item:hover::part(button),
+panel-list.searchmode-switcher-panel-list panel-item[selected]::part(button),
+panel-list.searchmode-switcher-panel-list panel-item:focus-within::part(button),
+panel-list.searchmode-switcher-panel-list panel-item::part(button):hover,
+panel-list.searchmode-switcher-panel-list panel-item::part(button):focus,
+panel-list.searchmode-switcher-panel-list panel-item::part(button):focus-visible,
+panel-list.searchmode-switcher-panel-list > .searchmode-switcher-panel-search-settings-button:hover::part(button),
+panel-list.searchmode-switcher-panel-list > .searchmode-switcher-panel-search-settings-button:focus-within::part(button) {
+  background-color: var(--search-panel-accent-solid) !important;
+  color: var(--search-panel-accent-text) !important;
+  fill: var(--search-panel-accent-text) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+panel-list.searchmode-switcher-panel-list panel-item:hover::part(label),
+panel-list.searchmode-switcher-panel-list panel-item[selected]::part(label),
+panel-list.searchmode-switcher-panel-list panel-item:focus-within::part(label),
+panel-list.searchmode-switcher-panel-list panel-item::part(button):hover label,
+panel-list.searchmode-switcher-panel-list panel-item::part(button):focus label {
+  color: var(--search-panel-accent-text) !important;
+}
+
+/* Badges éventuels ("Nouveau", etc.) */
+.searchmode-switcher-badge,
+moz-badge {
+  background-color: var(--search-panel-accent-solid) !important;
+  color: var(--search-panel-accent-text) !important;
+  border-radius: var(--search-panel-border-radius) !important;
+}
+
+
+/* ==========================================================================
+   5. BARRE D'ADRESSES (URLBAR) & LISTE DÃROULANTE (DROPDOWN)
+   ========================================================================== */
+
+#urlbar-input,
+input {
+  background-color: var(--urlbar-box-background-color) !important;
+  color: var(--menu-url-text) !important;
+}
+
+#urlbar-input::selection,
+input::selection {
+  background-color: var(--accent-solid) !important;
+  color: var(--selection-text) !important;
+}
+
+#urlbar:not([breakout-extend]),
+#searchbar {
+  min-height: var(--urlbar-height) !important;
+  font-size: 13px !important;
+  margin: 0 !important;
+}
+
+#urlbar-container {
+  padding-block: 0 !important;
+  margin-block: 0 !important;
+  min-height: var(--urlbar-height) !important;
+}
+
+/* Cadre & fond de la barre d'adresse (fermé et ouvert) */
+#urlbar .urlbar-background,
+#urlbar-background,
+#searchbar {
+  border-radius: var(--general-radius) !important;
+  border: 1px solid var(--urlbar-border-color) !important;
+  box-shadow: none !important;
+}
+
+#urlbar[focused="true"]:not([open]) .urlbar-background,
+#urlbar[focused="true"]:not([open]) > #urlbar-background {
+  border-color: var(--urlbar-focus-border) !important;
+}
+
+#urlbar[open] .urlbar-background,
+#urlbar[open] > #urlbar-background {
+  background: var(--menu-url-background) !important;
+  background-color: var(--menu-url-background) !important;
+  border-color: var(--urlbar-border-color) !important;
+  border-radius: var(--general-radius) !important;
+  box-shadow: var(--menu-shadow) !important;
+}
+
+#urlbar[breakout][breakout-extend] {
+  height: auto !important;
+}
+
+/* Liste déroulante des suggestions */
+.urlbarView {
+  background: var(--menu-url-background) !important;
+  background-color: var(--menu-url-background) !important;
+  color: var(--menu-url-text) !important;
+  border-radius: 0 0 var(--general-radius) var(--general-radius) !important;
+  overflow: hidden !important;
+  margin-bottom: 2px !important;
+}
+
+.urlbarView-body-outer,
+.urlbarView-body-inner {
+  overflow: hidden !important;
+}
+
+.urlbarView-results {
+  padding-block-end: 4px !important;
+  overflow: hidden !important;
+}
+
+.urlbarView-row {
+  background: transparent !important;
+  color: var(--menu-url-text) !important;
+  border-radius: var(--general-radius) !important;
+  overflow: hidden !important;
+}
+
+.urlbarView-title,
+.urlbarView-url,
+.urlbarView-action,
+.urlbarView-secondary-search-button {
+  color: var(--menu-url-text) !important;
+}
+
+/* Survol & sélection de la liste déroulante */
+.urlbarView-row[selected],
+.urlbarView-row:hover {
+  background: var(--accent-color) !important;
+  color: var(--selection-text) !important;
+  border-radius: var(--general-radius) !important;
+}
+
+.urlbarView-row[selected] .urlbarView-title,
+.urlbarView-row[selected] .urlbarView-url,
+.urlbarView-row[selected] .urlbarView-action,
+.urlbarView-row:hover .urlbarView-title,
+.urlbarView-row:hover .urlbarView-url,
+.urlbarView-row:hover .urlbarView-action {
+  color: var(--selection-text) !important;
+}
+
+/* ==========================================================================
+   6. ONGLETS CLASSIQUES PHOTON ULTRA-COMPACTS (25px) CONNECTéS
+   - Hauteur exacte 25px sans débordement ni padding superflu
+   - Onglet actif connecté directement à la navbar
+   - Onglets inactifs (Léger fond blanc transparent)
+   - Séparateurs verticaux fins Photon (hauteur 19px centrée)
+   - Favicons 14px et croix 14px parfaitement alignés verticalement
+   ========================================================================== */
+
+#navigator-toolbox,
+#navigator-toolbox:-moz-window-inactive {
+  background-color: var(--bg-tabstrip) !important;
+  background-image: none !important;
+  border-bottom: none !important;
+  margin-bottom: 0px !important;
+  padding: 0 !important;
+  height: auto !important;
+}
+
+#TabsToolbar,
+#TabsToolbar:-moz-window-inactive {
+  background-color: var(--bg-tabstrip) !important;
+  background-image: none !important;
+  color: var(--text-inactive) !important;
+  height: var(--tab-height) !important;
+  min-height: var(--tab-height) !important;
+  max-height: var(--tab-height) !important;
+  --tab-min-height: var(--tab-height) !important;
+  --tab-block-margin: 0 !important;
+  --tab-margin-block: 0 !important;
+  margin-bottom: 0px !important;
+  padding: 0 !important;
+  border-bottom: none !important;
+}
+
+#tabbrowser-tabs,
+#tabbrowser-arrowscrollbox,
+.tabbrowser-tab,
+.tab-stack,
+.tab-background {
+  height: var(--tab-height) !important;
+  min-height: var(--tab-height) !important;
+  max-height: var(--tab-height) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#tabbrowser-tabs {
+  --tab-min-height: var(--tab-height) !important;
+  --tab-block-margin: 0 !important;
+  --tab-margin-block: 0 !important;
+  padding-inline: 0 !important;
+}
+
+#scrollbutton-up,
+#scrollbutton-down {
+  border-radius: 0 !important;
+}
+
+/* Suppression complète des marges Proton autour de chaque onglet */
+.tabbrowser-tab {
+  padding-inline: 0 !important;
+  margin-inline: 0 !important;
+  margin-block: 0 !important;
+}
+
+.tab-stack {
+  margin-block: 0 !important;
+  padding-block: 0 !important;
+}
+
+.tab-background {
+  border-radius: 0 !important;
+  margin-block: 0 !important;
+  margin-inline: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Contenu interne de l'onglet ajusté au millimètre pour 25px */
+.tab-content {
+  height: var(--tab-height) !important;
+  min-height: var(--tab-height) !important;
+  max-height: var(--tab-height) !important;
+  padding-block: 0 !important;
+  padding-inline: 7px !important;
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.tab-icon-image {
+  width: 14px !important;
+  height: 14px !important;
+  margin-inline-end: 6px !important;
+  opacity: 1 !important;
+}
+
+.tab-label-container {
+  padding-block: 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* 1. ONGLET ACTIF : Connecté directement à la navbar, bloc continu */
+.tabbrowser-tab:is([selected], [visuallyselected], [selected="true"]) .tab-background,
+.tabbrowser-tab:is([selected], [visuallyselected], [selected="true"]):-moz-window-inactive .tab-background,
+.tab-background[selected] {
+  background-color: var(--bg-tab-active) !important;
+  background-image: none !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+.tabbrowser-tab:is([selected], [visuallyselected], [selected="true"]) .tab-label {
+  color: var(--text-active) !important;
+  font-weight: 600 !important;
+}
+
+/* 2. ONGLETS INACTIFS : Léger fond blanc transparent */
+.tabbrowser-tab:not([selected]):not([visuallyselected]) .tab-background {
+  background-color: var(--bg-tab-inactive) !important;
+  background-image: none !important;
+  border-radius: 0 !important;
+}
+
+.tabbrowser-tab:not([selected]):not([visuallyselected]) .tab-label {
+  color: var(--text-inactive) !important;
+  opacity: 1 !important;
+}
+
+/* Survol onglet inactif : léger éclaircissement plein format sans forme bouton */
+.tabbrowser-tab:not([selected]):not([visuallyselected]):hover .tab-background {
+  background-color: var(--bg-tab-hover) !important;
+  border-radius: 4px 4px 0 0 !important;
+}
+
+.tabbrowser-tab:not([selected]):not([visuallyselected]):hover .tab-label {
+  color: var(--text-tab-hover) !important;
+}
+
+/* Séparateurs verticaux fins entre onglets inactifs Photon */
+.tabbrowser-tab:not([selected]):not([visuallyselected]):not(:hover) + .tabbrowser-tab:not([selected]):not([visuallyselected]):not(:hover)::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 3px !important;
+  bottom: 3px !important;
+  width: 1px !important;
+  background-color: var(--tab-separator) !important;
+}
+
+/* Barre de navigation */
+#nav-bar,
+#nav-bar:-moz-window-inactive {
+  background-color: var(--bg-navbar) !important;
+  background-image: none !important;
+  color: var(--text-active) !important;
+  border-top: none !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
+  padding-block: 3px !important;
+  padding-inline: 6px !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+#PersonalToolbar,
+#PersonalToolbar:-moz-window-inactive {
+  background-color: var(--bg-navbar) !important;
+  background-image: none !important;
+  color: var(--text-active) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  padding-inline: 6px !important;
+  padding-block: 2px !important;
+}
+
+/* Boutons de fenêtre, nouvel onglet & barre d'onglets (calés sur 25px) */
+toolbarbutton {
+  border-radius: var(--general-radius) !important;
+  color: var(--text-active) !important;
+}
+
+#TabsToolbar .titlebar-buttonbox-container,
+#TabsToolbar .titlebar-buttonbox,
+#TabsToolbar .titlebar-button,
+#TabsToolbar toolbarbutton,
+#alltabs-button,
+#tabs-newtab-button {
+  height: var(--tab-height) !important;
+  min-height: var(--tab-height) !important;
+  max-height: var(--tab-height) !important;
+  padding: 0 4px !important;
+}
+
+#tabs-newtab-button,
+#TabsToolbar #new-tab-button {
+  border-radius: var(--general-radius) !important;
+  color: var(--text-inactive) !important;
+  margin-inline: 2px !important;
+}
+
+#tabs-newtab-button:hover,
+#TabsToolbar #new-tab-button:hover {
+  background-color: var(--bg-tab-hover) !important;
+  color: var(--text-tab-hover) !important;
+}
+
+/* Nettoyage Proton */
+.tab-line,
+.tab-line[selected],
+.tab-line[selected="true"],
+.tabbrowser-tab > .tab-stack > .tab-background > .tab-line,
+#tabbrowser-tabs::after,
+#TabsToolbar::after {
+  display: none !important;
+}
+
+/* ==========================================================================
+   8. PANNEAU MARQUE-PAGES / ÉTOILE (#editBookmarkPanel)
+   Contrôle 100% via variables :root :
+   --bookmark-panel-bg, --bookmark-panel-text, --bookmark-input-bg,
+   --bookmark-primary-solid, --bookmark-button-bg, etc.
+   ========================================================================== */
+
+/* 1. Conteneur principal #editBookmarkPanel & Shadow DOM de premier niveau */
+#editBookmarkPanel {
+  --panel-background: var(--bookmark-panel-bg) !important;
+  --panel-background-color: var(--bookmark-panel-bg-solid) !important;
+  --panel-color: var(--bookmark-panel-text) !important;
+  --panel-border-color: var(--bookmark-panel-border) !important;
+  --panel-border-radius: var(--bookmark-panel-border-radius) !important;
+  --panel-box-shadow: var(--bookmark-panel-shadow) !important;
+  --arrowpanel-background: var(--bookmark-panel-bg-solid) !important;
+  --arrowpanel-border-color: var(--bookmark-panel-border) !important;
+  --arrowpanel-color: var(--bookmark-panel-text) !important;
+}
+
+#editBookmarkPanel,
+#editBookmarkPanel[type="arrow"],
+#editBookmarkPanel::part(content),
+#editBookmarkPanel[type="arrow"]::part(content) {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: var(--bookmark-panel-bg) !important;
+  background-color: var(--bookmark-panel-bg-solid) !important;
+  color: var(--bookmark-panel-text) !important;
+  border: 1px solid var(--bookmark-panel-border) !important;
+  border-radius: var(--bookmark-panel-border-radius) !important;
+  box-shadow: var(--bookmark-panel-shadow) !important;
+}
+
+/* 2. Titre et séparateur d'en-tête */
+#editBookmarkPanelTitle,
+#editBookmarkPanel .panel-header h1,
+#editBookmarkPanel .panel-header span {
+  color: var(--bookmark-panel-text) !important;
+  font-weight: 600 !important;
+}
+
+#editBookmarkHeaderSeparator {
+  border: none !important;
+  border-top: 1px solid var(--bookmark-panel-separator) !important;
+  background: none !important;
+  height: 1px !important;
+  margin: 6px 14px !important;
+}
+
+/* 3. Labels et descriptions */
+#editBookmarkPanelContent label,
+#editBookmarkPanel label,
+#editBookmarkPanel .caption-label,
+#editBookmarkPanelBottomContent label {
+  color: var(--bookmark-panel-text) !important;
+}
+
+#editBookmarkPanel_showForNewBookmarks > .checkbox-label-box > .checkbox-label,
+#editBMPanel_itemsCountText {
+  color: var(--bookmark-panel-text-muted) !important;
+  opacity: 1 !important;
+}
+
+/* 4. Champs de saisie (Inputs texte) */
+#editBookmarkPanel input,
+#editBookmarkPanel html|input,
+#editBookmarkPanel .editBMPanel_nameRow input,
+#editBMPanel_namePicker,
+#editBMPanel_locationField,
+#editBMPanel_tagsField {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: var(--bookmark-input-bg) !important;
+  color: var(--bookmark-input-text) !important;
+  border: 1px solid var(--bookmark-input-border) !important;
+  border-radius: var(--bookmark-panel-border-radius) !important;
+  padding: 5px 8px !important;
+  margin-block: 2px 6px !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#editBookmarkPanel input:focus,
+#editBookmarkPanel html|input:focus,
+#editBMPanel_namePicker:focus,
+#editBMPanel_locationField:focus,
+#editBMPanel_tagsField:focus {
+  border-color: var(--bookmark-input-focus-border) !important;
+  box-shadow: 0 0 0 1px var(--bookmark-input-focus-border) !important;
+  outline: none !important;
+}
+
+#editBookmarkPanel input::selection,
+#editBookmarkPanel html|input::selection {
+  background-color: var(--bookmark-primary-solid) !important;
+  color: var(--bookmark-primary-text) !important;
+}
+
+/* 5. Sélecteur de dossier (Menulist & Expander) */
+#editBMPanel_folderMenuList {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: var(--bookmark-input-bg) !important;
+  color: var(--bookmark-input-text) !important;
+  border: 1px solid var(--bookmark-input-border) !important;
+  border-radius: var(--bookmark-panel-border-radius) !important;
+  padding: 4px 8px !important;
+  fill: currentColor !important;
+  -moz-context-properties: fill, fill-opacity !important;
+}
+
+#editBookmarkPanel .expander-up,
+#editBookmarkPanel .expander-down,
+#editBMPanel_foldersExpander {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: var(--bookmark-button-bg) !important;
+  color: var(--bookmark-button-text) !important;
+  fill: currentColor !important;
+  -moz-context-properties: fill !important;
+  border: 1px solid var(--bookmark-input-border) !important;
+  border-radius: var(--bookmark-panel-border-radius) !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+}
+
+#editBookmarkPanel .expander-up:hover,
+#editBookmarkPanel .expander-down:hover,
+#editBMPanel_foldersExpander:hover {
+  background-color: var(--bookmark-button-hover-bg) !important;
+}
+
+/* 6. Case à cocher (Checkbox) */
+#editBookmarkPanel checkbox,
+#editBookmarkPanel .checkbox-check {
+  accent-color: var(--bookmark-primary-solid) !important;
+}
+
+/* 7. Bouton Primaire "Enregistrer" (#editBookmarkPanelDoneButton) */
+#editBookmarkPanelDoneButton,
+#editBookmarkPanel button[default="true"] {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background: var(--bookmark-primary-bg) !important;
+  background-color: var(--bookmark-primary-solid) !important;
+  color: var(--bookmark-primary-text) !important;
+  border: none !important;
+  border-radius: var(--bookmark-panel-border-radius) !important;
+  padding: 6px 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#editBookmarkPanelDoneButton:hover,
+#editBookmarkPanel button[default="true"]:hover {
+  background-color: var(--bookmark-primary-hover-bg) !important;
+  filter: brightness(1.08);
+}
+
+/* 8. Bouton Secondaire "Supprimer" / "Annuler" / "Nouveau dossier" */
+#editBookmarkPanelRemoveButton,
+#editBMPanel_newFolderButton,
+#editBookmarkPanel .panel-footer button:not([default="true"]) {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: var(--bookmark-button-bg) !important;
+  color: var(--bookmark-button-text) !important;
+  border: 1px solid var(--bookmark-input-border) !important;
+  border-radius: var(--bookmark-panel-border-radius) !important;
+  padding: 6px 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#editBookmarkPanelRemoveButton:hover,
+#editBMPanel_newFolderButton:hover,
+#editBookmarkPanel .panel-footer button:not([default="true"]):hover {
+  background-color: var(--bookmark-button-hover-bg) !important;
+  border-color: var(--bookmark-button-text) !important;
+}
+
+/* ==========================================================================
+   9. SÉCURITÉ DU SITE & PERMISSIONS (#identity-box, #identity-popup, #protections-popup)
+   Contrôle 100% via variables :root :
+   --identity-box-*, --identity-panel-*
+   ========================================================================== */
+
+/* 1. Bouton et conteneur de sécurité dans l'URLbar */
+#identity-box,
+#identity-permission-box,
+#identity-icon-box,
+#tracking-protection-icon-container,
+#tracking-protection-icon-box {
+  border-radius: var(--general-radius) !important;
+  color: var(--identity-box-text) !important;
+  transition: background-color 0.1s ease !important;
+}
+
+#identity-box:hover:not([open="true"]) > .identity-box-button,
+#identity-box:hover:not([open="true"]) #identity-permission-box,
+#tracking-protection-icon-container:hover:not([open="true"]) {
+  background-color: var(--identity-box-hover-bg) !important;
+}
+
+#identity-box:is([open="true"], [active="true"]) > .identity-box-button,
+#identity-box:is([open="true"], [active="true"]) #identity-permission-box,
+#tracking-protection-icon-container:is([open="true"], [active="true"]) {
+  background-color: var(--identity-box-active-bg) !important;
+  color: var(--selection-text) !important;
+  fill: var(--selection-text) !important;
+}
+
+#identity-box #identity-icon-label {
+  color: inherit !important;
+  font-weight: 500 !important;
+}
+
+/* 2. Popups de sécurité & protections (#identity-popup, #protections-popup, etc.) */
+#identity-popup,
+#protections-popup,
+#permission-popup,
+#trustpanel-popup,
+.site-information-popup {
+  --panel-background: var(--identity-panel-bg) !important;
+  --panel-background-color: var(--identity-panel-bg-solid) !important;
+  --panel-color: var(--identity-panel-text) !important;
+  --panel-border-color: var(--identity-panel-border) !important;
+  --panel-border-radius: var(--identity-panel-border-radius) !important;
+  --panel-box-shadow: var(--identity-panel-shadow) !important;
+  --arrowpanel-background: var(--identity-panel-bg-solid) !important;
+  --arrowpanel-border-color: var(--identity-panel-border) !important;
+  --arrowpanel-color: var(--identity-panel-text) !important;
+  --color-accent-primary: var(--accent-solid) !important;
+}
+
+#identity-popup,
+#identity-popup[type="arrow"],
+#identity-popup::part(content),
+#identity-popup[type="arrow"]::part(content),
+#protections-popup,
+#protections-popup[type="arrow"],
+#protections-popup::part(content),
+#protections-popup[type="arrow"]::part(content),
+#permission-popup,
+#permission-popup::part(content),
+#trustpanel-popup,
+#trustpanel-popup::part(content),
+.site-information-popup,
+.site-information-popup::part(content) {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: var(--identity-panel-bg) !important;
+  background-color: var(--identity-panel-bg-solid) !important;
+  color: var(--identity-panel-text) !important;
+  border: 1px solid var(--identity-panel-border) !important;
+  border-radius: var(--identity-panel-border-radius) !important;
+  box-shadow: var(--identity-panel-shadow) !important;
+}
+
+/* En-têtes */
+#identity-popup-mainView-panel-header,
+#identity-popup-mainView-panel-header-span,
+#identity-popup .panel-header h1,
+#protections-popup-mainView-panel-header,
+#protections-popup-mainView-panel-header-span,
+#protections-popup-main-header-label,
+#protections-popup .panel-header h1 {
+  color: var(--identity-panel-text) !important;
+  font-weight: 600 !important;
+}
+
+#protections-popup-mainView-panel-header {
+  overflow: hidden !important;
+}
+
+/* Textes, labels et descriptions */
+#identity-popup label,
+#identity-popup description,
+#identity-popup .subviewbutton,
+#protections-popup label,
+#protections-popup description,
+#protections-popup h1,
+#protections-popup h2,
+#protections-popup h3,
+#protections-popup span,
+#protections-popup .text-link,
+#protections-popup .subviewbutton,
+#protections-popup toolbarbutton {
+  color: var(--identity-panel-text) !important;
+}
+
+#protections-popup description,
+#protections-popup .protections-popup-tp-switch-box label:last-child {
+  color: var(--identity-panel-text-muted) !important;
+}
+
+/* Carte message "Firefox monte la garde" (#info-message-container) */
+#info-message-container {
+  background-color: var(--identity-card-bg) !important;
+  border: 1px solid var(--identity-card-border) !important;
+  border-radius: var(--general-radius) !important;
+  color: var(--identity-panel-text) !important;
+  margin: 8px 16px !important;
+}
+
+#info-message-container * {
+  color: var(--identity-panel-text) !important;
+}
+
+/* Interrupteur à bascule (Toggle switch) */
+#protections-popup moz-toggle,
+moz-toggle#protections-popup-tp-switch {
+  --color-accent-primary: var(--accent-solid) !important;
+  --toggle-background-color-pressed: var(--accent-solid) !important;
+  --toggle-background-color-pressed-hover: var(--accent-solid) !important;
+  --toggle-background-color-pressed-active: var(--accent-solid) !important;
+  color: var(--identity-panel-text) !important;
+}
+
+/* Boutons et sous-vues au survol / focus */
+#identity-popup .subviewbutton:is(:hover, :focus, :focus-visible),
+#protections-popup .subviewbutton:is(:hover, :focus, :focus-visible),
+#protections-popup toolbarbutton:is(:hover, :focus, :focus-visible) {
+  background: var(--identity-panel-hover-bg) !important;
+  color: var(--identity-panel-hover-text) !important;
+  fill: var(--identity-panel-hover-text) !important;
+  border-radius: var(--identity-panel-border-radius) !important;
+  outline: none !important;
+}
+
+#identity-popup .subviewbutton:is(:hover, :focus, :focus-visible) label,
+#protections-popup .subviewbutton:is(:hover, :focus, :focus-visible) label {
+  color: var(--identity-panel-hover-text) !important;
+}
+
+
+/* ==========================================================================
+   10. TRADUCTIONS (BOUTON URLBAR & #full-page-translations-panel)
+   Contrôle 100% via variables :root :
+   --translations-button-*, --translations-panel-*, --translations-primary-*
+   ========================================================================== */
+
+/* 1. Bouton de traduction dans l'URLbar */
+#translations-button {
+  border-radius: var(--general-radius) !important;
+  fill: currentColor !important;
+  -moz-context-properties: fill, fill-opacity !important;
+}
+
+#translations-button:hover:not([open="true"]) {
+  background-color: var(--translations-button-hover-bg) !important;
+}
+
+#translations-button:is([open="true"], [active="true"]) {
+  background-color: var(--translations-button-active-bg) !important;
+  color: var(--selection-text) !important;
+  fill: var(--selection-text) !important;
+}
+
+/* 2. Popups de traduction (#full-page-translations-panel & #select-translations-panel) */
+#full-page-translations-panel,
+#select-translations-panel {
+  --panel-background: var(--translations-panel-bg) !important;
+  --panel-background-color: var(--translations-panel-bg-solid) !important;
+  --panel-color: var(--translations-panel-text) !important;
+  --panel-border-color: var(--translations-panel-border) !important;
+  --panel-border-radius: var(--translations-panel-border-radius) !important;
+  --panel-box-shadow: var(--translations-panel-shadow) !important;
+  --arrowpanel-background: var(--translations-panel-bg-solid) !important;
+  --arrowpanel-border-color: var(--translations-panel-border) !important;
+  --arrowpanel-color: var(--translations-panel-text) !important;
+}
+
+#full-page-translations-panel,
+#full-page-translations-panel[type="arrow"],
+#full-page-translations-panel::part(content),
+#full-page-translations-panel[type="arrow"]::part(content),
+#select-translations-panel,
+#select-translations-panel[type="arrow"],
+#select-translations-panel::part(content),
+#select-translations-panel[type="arrow"]::part(content) {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: var(--translations-panel-bg) !important;
+  background-color: var(--translations-panel-bg-solid) !important;
+  color: var(--translations-panel-text) !important;
+  border: 1px solid var(--translations-panel-border) !important;
+  border-radius: var(--translations-panel-border-radius) !important;
+  box-shadow: var(--translations-panel-shadow) !important;
+}
+
+#full-page-translations-panel-header,
+#select-translations-panel-header,
+.translations-panel-header-wrapper h1 {
+  color: var(--translations-panel-text) !important;
+  font-weight: 600 !important;
+}
+
+.translations-panel label,
+.translations-panel description,
+#full-page-translations-panel-intro {
+  color: var(--translations-panel-text) !important;
+}
+
+/* 3. Sélecteurs de langues (Menulists) */
+#full-page-translations-panel menulist,
+#select-translations-panel menulist {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: var(--translations-input-bg) !important;
+  color: var(--translations-input-text) !important;
+  border: 1px solid var(--translations-input-border) !important;
+  border-radius: var(--translations-panel-border-radius) !important;
+  padding: 4px 8px !important;
+  fill: currentColor !important;
+  -moz-context-properties: fill, fill-opacity !important;
+  outline: none !important;
+}
+
+#full-page-translations-panel menulist:focus,
+#select-translations-panel menulist:focus {
+  border-color: var(--translations-input-focus-border) !important;
+  box-shadow: 0 0 0 1px var(--translations-input-focus-border) !important;
+}
+
+/* 4. Bouton primaire "Traduire" */
+#full-page-translations-panel-translate,
+#select-translations-panel-done-button-primary,
+.translations-panel-button-group > button[default="true"] {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background: var(--translations-primary-bg) !important;
+  background-color: var(--translations-primary-solid) !important;
+  color: var(--translations-primary-text) !important;
+  border: none !important;
+  border-radius: var(--translations-panel-border-radius) !important;
+  padding: 6px 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#full-page-translations-panel-translate:hover,
+#select-translations-panel-done-button-primary:hover,
+.translations-panel-button-group > button[default="true"]:hover {
+  background-color: var(--translations-primary-hover-bg) !important;
+  filter: brightness(1.08);
+}
+
+/* 5. Boutons secondaires ("Annuler", "Rétablir") */
+#full-page-translations-panel-cancel,
+#full-page-translations-panel-restore-button,
+#select-translations-panel-cancel-button,
+.translations-panel-button-group > button:not([default="true"]) {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: var(--translations-button-bg) !important;
+  color: var(--translations-button-text) !important;
+  border: 1px solid var(--translations-input-border) !important;
+  border-radius: var(--translations-panel-border-radius) !important;
+  padding: 6px 16px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#full-page-translations-panel-cancel:hover,
+#full-page-translations-panel-restore-button:hover,
+#select-translations-panel-cancel-button:hover,
+.translations-panel-button-group > button:not([default="true"]):hover {
+  background-color: var(--translations-button-hover-bg) !important;
+  border-color: var(--translations-button-text) !important;
+}
+
+/* ==========================================================================
+   11. MESSAGES AU SURVOL (TOOLTIPS & STATUSPANEL)
+   Bordures transparentes configurées via --tooltip-border: transparent.
+   ========================================================================== */
+tooltip,
+#tooltip,
+.tooltip,
+tooltip::part(content),
+#statuspanel-label {
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-color: var(--tooltip-bg) !important;
+  color: var(--tooltip-text) !important;
+  border: 1px solid var(--tooltip-border) !important;
+  border-color: var(--tooltip-border) !important;
+  border-radius: var(--general-radius) !important;
+  box-shadow: var(--tooltip-shadow) !important;
+}
+
+#statuspanel-label {
+  border-color: var(--tooltip-border) !important;
+  border-top-style: solid !important;
+}
+
