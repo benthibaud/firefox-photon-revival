@@ -60,10 +60,10 @@ Pour passer en mode sombre, ouvrez `userChrome.css` (dans le sous-dossier `chrom
    ========================================================================== */
 
 /* 1. VARIANTE CLAIRE (ACTIVE PAR DÉFAUT) */
-/* @import "variantes/theme-clair.css"; */
+/* @import "variantes/variables-clair.css"; */
 
 /* 2. VARIANTE SOMBRE (PHOTON VERT & ACCENTS ORGANIQUES) */
-@import "variantes/theme-sombre.css";
+@import "variantes/variables-sombre.css";
 ```
 Puis redémarrez Firefox.
 
@@ -71,7 +71,7 @@ Puis redémarrez Firefox.
 
 ## Personnalisation (Design Tokens à 2 Niveaux)
 
-Toutes les couleurs et dimensions se règlent au tout début de chaque variante (`variantes/theme-clair.css` ou `theme-sombre.css`) :
+Toutes les couleurs et dimensions se règlent dans les fichiers de variables (`variantes/variables-clair.css` ou `variantes/variables-sombre.css`) :
 
 - **Niveau A (Variables Générales) :** Changez `--text-on-dark`, `--surface-dark-bg`, `--accent-solid`, `--general-radius: 2px;` ou `--tab-height: 25px;` pour rethématiser l'ensemble de Firefox en un instant.
 - **Niveau B (Variables Spécifiques) :** Chaque composant (marque-pages, traductions, moteurs de recherche, sécurité) hérite du Niveau A mais reste ajustable individuellement.

@@ -10,7 +10,7 @@
 # ==============================================================================
 
 MODE="${1:-light}"
-BASE_DIR="/home/ben/.gemini/antigravity/scratch/firefox_photon_theme"
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TEST_PROF="/tmp/firefox-theme-xephyr"
 
 echo "=== Préparation du profil de test (Mode: $MODE) ==="
@@ -28,24 +28,17 @@ if [ -d "$BASE_DIR/theme" ]; then
 fi
 
 # Ajustement de l'import de variante dans userChrome.css selon l'argument
-if [ "$MODE" = "dark" ]; then
-  sed -i 's|^@import "variantes/theme-.*";|/* & */|' "$TEST_PROF/chrome/userChrome.css"
-  sed -i 's|.*@import "variantes/theme-sombre.css";.*|@import "variantes/theme-sombre.css";|' "$TEST_PROF/chrome/userChrome.css"
-  cat << 'EOF_PREF' >> "$TEST_PROF/user.js"
-user_pref("ui.systemUsesDarkTheme", 1);
-user_pref("layout.css.prefers-color-scheme.content-override", 0);
-EOF_PREF
-elif [ "$MODE" = "crunchy" ]; then
-  sed -i 's|^@import "variantes/theme-.*";|/* & */|' "$TEST_PROF/chrome/userChrome.css"
-  sed -i 's|.*@import "variantes/theme-crunchy.css";.*|@import "variantes/theme-crunchy.css";|' "$TEST_PROF/chrome/userChrome.css"
+if [ "$MODE" = "dark" ] || [ "$MODE" = "crunchy" ]; then
+  sed -i 's|^@import "variantes/variables-.*";|/* & */|' "$TEST_PROF/chrome/userChrome.css"
+  sed -i 's|.*@import "variantes/variables-sombre.css";.*|@import "variantes/variables-sombre.css";|' "$TEST_PROF/chrome/userChrome.css"
   cat << 'EOF_PREF' >> "$TEST_PROF/user.js"
 user_pref("ui.systemUsesDarkTheme", 1);
 user_pref("layout.css.prefers-color-scheme.content-override", 0);
 EOF_PREF
 else
   # Mode clair par défaut
-  sed -i 's|^@import "variantes/theme-.*";|/* & */|' "$TEST_PROF/chrome/userChrome.css"
-  sed -i 's|.*@import "variantes/theme-clair.css";.*|@import "variantes/theme-clair.css";|' "$TEST_PROF/chrome/userChrome.css"
+  sed -i 's|^@import "variantes/variables-.*";|/* & */|' "$TEST_PROF/chrome/userChrome.css"
+  sed -i 's|.*@import "variantes/variables-clair.css";.*|@import "variantes/variables-clair.css";|' "$TEST_PROF/chrome/userChrome.css"
   cat << 'EOF_PREF' >> "$TEST_PROF/user.js"
 user_pref("ui.systemUsesDarkTheme", 0);
 user_pref("layout.css.prefers-color-scheme.content-override", 1);

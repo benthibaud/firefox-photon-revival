@@ -1,0 +1,189 @@
+/* ==========================================================================
+   VARIANTE CLAIRE — THÈME PHOTON ÉPURÉ & BRUT
+   Architecture de Design Tokens à deux niveaux :
+   1. VARIABLES GÉNÉRALES : Modifiez ici pour changer l'ensemble du thème en quelques secondes.
+   2. VARIABLES SPÉCIFIQUES : Pointent par défaut vers les variables générales,
+      surchargeables indépendamment pour du sur-mesure pixel-perfect.
+   ========================================================================== */
+
+:root {
+  /* ========================================================================
+     A. VARIABLES GÉNÉRALES (GLOBAL TOKENS)
+     ======================================================================== */
+
+  /* 1. Typographie & Textes */
+  --text-on-dark: #ffffff;                      /* Texte principal clair sur surfaces sombres */
+  --text-on-dark-muted: #b0b0b8;                /* Texte secondaire clair */
+  --text-on-light: #18181b;                     /* Texte principal sombre sur surfaces claires */
+  --text-on-light-muted: #6b7280;               /* Texte secondaire sombre */
+
+  /* 2. Surfaces Sombres (Menus contextuels clic droit) */
+  --surface-dark-bg: linear-gradient(to right, #22211e 0%, #363530 55%, #484741 100%);
+  --surface-dark-solid: #22211e;                /* Teinte sombre solide de repli */
+  --surface-dark-border: #1a1916;               /* Bordure sombre */
+  --surface-dark-shadow: 0 4px 16px rgba(0, 0, 0, 0.7);
+  --surface-dark-separator: rgba(255, 255, 255, 0.15);
+  --surface-dark-input-bg: rgba(255, 255, 255, 0.08);
+  --surface-dark-input-border: rgba(255, 255, 255, 0.25);
+  --surface-dark-btn-bg: rgba(255, 255, 255, 0.12);
+  --surface-dark-btn-hover: rgba(255, 255, 255, 0.22);
+
+  /* 3. Surfaces Claires (Navbar, Popups applicatifs, URLbar) */
+  --surface-light-bg: #ffffff;                  /* Fond clair uni */
+  --surface-light-solid: #ffffff;
+  --surface-light-border: #d1d5db;              /* Bordure fine */
+  --surface-light-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  --surface-light-separator: rgba(0, 0, 0, 0.1);
+  --surface-light-input-bg: #f4f5f7;            /* Fond des champs clair */
+  --surface-light-input-border: #d1d5db;
+  --surface-light-btn-bg: #e4e4e7;              /* Bouton secondaire clair */
+  --surface-light-btn-hover: #d4d4d8;
+
+  /* 4. Accent Vert Organique (Brut & Low-Tech) */
+  --accent-color: linear-gradient(to right, #206e33 0%, #35ad54 55%, #48dc6f 100%);
+  --accent-solid: #35ad54;                      /* Teinte solide pour contours nets */
+  --accent-hover: #2e9e4d;                      /* Survol accent */
+  --selection-text: var(--text-on-dark);        /* Texte sur fond accentué */
+
+  /* 5. Liens & Navigation */
+  --link-color: #2563eb !important;            /* Couleur générale des liens hypertexte */
+
+  /* 6. Formes, Angles & Géométrie (Photon Brut & Low-tech) */
+  --general-radius: 2px;                        /* Arrondi général (2px pour angles francs Photon) */
+  --tab-height: 25px;                           /* Hauteur exacte Photon des onglets */
+  --tabstrip-margin-top: 2px;                   /* Marge au-dessus des onglets (0px sous Crunchy, 2px hors Crunchy) */
+  --urlbar-height: 28px;                        /* Hauteur compacte de la barre d'adresse */
+
+  /* ========================================================================
+     B. VARIABLES SPÉCIFIQUES (SURCHARGES SUR-MESURE PAR COMPOSANT)
+     Chaque variable hérite des tokens généraux ci-dessus.
+     ======================================================================== */
+
+  /* 1. Bandeau d'onglets & Barre d'outils */
+  --bg-tabstrip: #242321;                       /* Bandeau supérieur sombre */
+  --bg-navbar: #f4f5f7;                         /* Barre de navigation claire */
+  --bg-tab-active: var(--bg-navbar);            /* Onglet sélectionné connecté à la navbar */
+  --border-color: var(--surface-light-border) !important;
+  --text-active: var(--text-on-light);          /* Texte sombre sur onglet actif */
+  --text-inactive: #e1e4e8;                     /* Texte clair sur bandeau sombre */
+  --bg-tab-inactive: rgba(255, 255, 255, 0.08);
+  --bg-tab-hover: rgba(255, 255, 255, 0.12);
+  --text-tab-hover: var(--text-on-dark);
+  --tab-separator: rgba(255, 255, 255, 0.25);
+
+  /* 2. Boutons de fermeture d'onglets (Croix) */
+  --tab-close-color: var(--text-active);
+  --tab-close-color-inactive: var(--text-inactive);
+  --tab-close-hover-color: var(--text-on-dark);
+  --tab-close-hover-bg: rgba(0, 0, 0, 0.15);
+
+  /* 3. Menus contextuels déroulants (Clic droit) — Design sombre immersif */
+  --menu-background: var(--surface-dark-bg);
+  --menu-bg-solid: var(--surface-dark-solid);
+  --menu-text: var(--text-on-dark);
+  --menu-text-muted: var(--text-on-dark-muted);
+  --menu-border-color: var(--surface-dark-border);
+  --menu-separator-color: var(--surface-dark-separator);
+  --menu-shadow: var(--surface-dark-shadow);
+
+  /* 4. Barre d'adresses URL & Menu Application (#appMenu-popup) */
+  --menu-url-background: var(--surface-light-bg);
+  --menu-url-text: var(--text-on-light);
+  --urlbar-box-background-color: var(--surface-light-bg);
+  --urlbar-border-color: var(--surface-light-border);
+  --urlbar-focus-border: var(--accent-solid);
+
+  /* Tokens natifs Firefox pour panneaux Arrow */
+  --panel-background: var(--menu-background) !important;
+  --panel-background-color: var(--menu-bg-solid) !important;
+  --panel-color: var(--menu-text) !important;
+  --panel-border-color: var(--menu-border-color) !important;
+  --panel-border-radius: var(--general-radius) !important;
+  --panel-box-shadow: var(--menu-shadow) !important;
+  --panel-separator-color: var(--surface-light-separator) !important;
+
+  --arrowpanel-border-color: var(--border-color) !important;
+  --arrowpanel-background: var(--menu-url-background) !important;
+  --arrowpanel-color: var(--menu-url-text) !important;
+  --arrowpanel-border-radius: var(--general-radius) !important;
+
+  --button-background-color-hover: var(--accent-solid) !important;
+  --button-background-color-active: var(--accent-solid) !important;
+
+  /* 5. Moteurs de recherche (Search Mode Switcher) */
+  --search-panel-bg: var(--surface-dark-bg);
+  --search-panel-bg-solid: var(--surface-dark-solid);
+  --search-panel-text: var(--text-on-dark);
+  --search-panel-text-muted: var(--text-on-dark-muted);
+  --search-panel-border: var(--surface-dark-border);
+  --search-panel-border-radius: var(--general-radius);
+  --search-panel-shadow: var(--surface-dark-shadow);
+  --search-panel-separator: var(--surface-dark-separator);
+  --search-panel-accent-solid: var(--accent-solid);
+  --search-panel-accent-text: var(--selection-text);
+
+  /* 6. Panneau Marque-pages / Étoile (#editBookmarkPanel) */
+  --bookmark-panel-bg: var(--surface-light-bg);
+  --bookmark-panel-bg-solid: var(--surface-light-solid);
+  --bookmark-panel-text: var(--text-on-light);
+  --bookmark-panel-text-muted: var(--text-on-light-muted);
+  --bookmark-panel-border: var(--surface-light-border);
+  --bookmark-panel-border-radius: var(--general-radius);
+  --bookmark-panel-shadow: var(--surface-light-shadow);
+  --bookmark-panel-separator: var(--surface-light-separator);
+  --bookmark-input-bg: var(--surface-light-input-bg);
+  --bookmark-input-text: var(--text-on-light);
+  --bookmark-input-border: var(--surface-light-input-border);
+  --bookmark-input-focus-border: var(--accent-solid);
+  --bookmark-button-bg: var(--surface-light-btn-bg);
+  --bookmark-button-text: var(--text-on-light);
+  --bookmark-button-hover-bg: var(--surface-light-btn-hover);
+  --bookmark-primary-bg: var(--accent-color);
+  --bookmark-primary-solid: var(--accent-solid);
+  --bookmark-primary-text: var(--selection-text);
+  --bookmark-primary-hover-bg: var(--accent-hover);
+
+  /* 7. Sécurité du site & Protections (#identity-popup, #protections-popup) */
+  --identity-box-bg: transparent;
+  --identity-box-hover-bg: rgba(0, 0, 0, 0.06);
+  --identity-box-active-bg: var(--accent-solid);
+  --identity-box-text: var(--text-on-light);
+  --identity-panel-bg: var(--surface-light-bg);
+  --identity-panel-bg-solid: var(--surface-light-solid);
+  --identity-panel-text: var(--text-on-light);
+  --identity-panel-text-muted: var(--text-on-light-muted);
+  --identity-panel-border: var(--surface-light-border);
+  --identity-panel-border-radius: var(--general-radius);
+  --identity-panel-shadow: var(--surface-light-shadow);
+  --identity-panel-hover-bg: var(--accent-color);
+  --identity-panel-hover-text: var(--selection-text);
+  --identity-card-bg: rgba(0, 0, 0, 0.04);
+  --identity-card-border: rgba(0, 0, 0, 0.12);
+
+  /* 8. Traductions (#full-page-translations-panel) */
+  --translations-button-hover-bg: rgba(0, 0, 0, 0.06);
+  --translations-button-active-bg: var(--accent-solid);
+  --translations-panel-bg: var(--surface-light-bg);
+  --translations-panel-bg-solid: var(--surface-light-solid);
+  --translations-panel-text: var(--text-on-light);
+  --translations-panel-text-muted: var(--text-on-light-muted);
+  --translations-panel-border: var(--surface-light-border);
+  --translations-panel-border-radius: var(--general-radius);
+  --translations-panel-shadow: var(--surface-light-shadow);
+  --translations-input-bg: var(--surface-light-input-bg);
+  --translations-input-text: var(--text-on-light);
+  --translations-input-border: var(--surface-light-input-border);
+  --translations-input-focus-border: var(--accent-solid);
+  --translations-primary-bg: var(--accent-color);
+  --translations-primary-solid: var(--accent-solid);
+  --translations-primary-text: var(--selection-text);
+  --translations-primary-hover-bg: var(--accent-hover);
+  --translations-button-bg: var(--surface-light-btn-bg);
+  --translations-button-text: var(--text-on-light);
+  --translations-button-hover-bg: var(--surface-light-btn-hover);
+  /* 9. Messages au survol (Tooltips & Infobulles) */
+  --tooltip-bg: var(--surface-dark-solid);
+  --tooltip-text: var(--text-on-dark);
+  --tooltip-border: transparent;                /* Bordures transparentes */
+  --tooltip-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
