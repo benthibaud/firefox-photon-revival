@@ -78,10 +78,24 @@ Toutes les couleurs et dimensions se règlent dans les fichiers de variables (`v
 
 ---
 
-## Test local (Xephyr)
+## Qualification & Banc d'Essai (Profil Isolé)
 
-Prévisualisez les thèmes sans impacter votre profil principal :
+Prévisualisez les thèmes en toute sécurité sans impacter votre profil principal (les tests tournent dans un profil éphémère jetable dans `/tmp/firefox-theme-test`) :
+
+### 1. Test Natif sur le Bureau (Recommandé)
+Rendu 100% fidèle avec les bordures système de fenêtres, vos polices réelles et la boîte à outils d'inspection active :
 ```bash
 ./run_test.sh light   # Test du thème clair
-./run_test.sh dark    # Test du thème sombre
+./run_test.sh dark    # Test du thème sombre (Photon vert)
 ```
+
+### 2. Test dans un Conteneur Xephyr Isolé
+Pour exécuter le test dans un serveur X virtuel imbriqué :
+```bash
+./run_test.sh --xephyr light
+./run_test.sh --xephyr dark
+```
+
+### 🛠️ Outils d'Inspection
+Pendant la session de test, appuyez sur **`Ctrl + Alt + Shift + I`** pour ouvrir la **Browser Toolbox** et inspecter en direct n'importe quel sélecteur du DOM XUL de l'interface.
+
