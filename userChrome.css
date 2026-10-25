@@ -92,6 +92,7 @@ menu {
   color: var(--menu-text) !important;
   padding: 4px 12px !important;
   background: transparent !important;
+  border-radius: var(--general-radius) !important;
 }
 
 menuitem > .menu-text,
@@ -101,11 +102,15 @@ menuitem > .menu-iconic-text,
   color: var(--menu-text) !important;
 }
 
-/* Survol & Sélection avec --accent-color */
+/* Survol & Sélection avec --accent-color (Angles Photon stricts) */
 menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]),
-menu:is(:hover, [_moz-menuactive="true"], [selected="true"]) {
+menu:is(:hover, [_moz-menuactive="true"], [selected="true"]),
+menupopup[placespopup="true"] menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]),
+menupopup[placespopup="true"] menu:is(:hover, [_moz-menuactive="true"], [selected="true"]),
+#PlacesChevronPopup menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) {
   background: var(--accent-color) !important;
   color: var(--selection-text) !important;
+  border-radius: var(--general-radius) !important;
 }
 
 menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-text,
@@ -114,6 +119,23 @@ menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-iconic-
 menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-accel {
   color: var(--selection-text) !important;
 }
+
+/* Éléments de la barre personnelle et popups de marque-pages */
+#PersonalToolbar .bookmark-item,
+#PlacesToolbarItems .bookmark-item,
+toolbarbutton.bookmark-item {
+  border-radius: var(--general-radius) !important;
+}
+
+#PersonalToolbar .bookmark-item:hover,
+#PlacesToolbarItems .bookmark-item:hover,
+toolbarbutton.bookmark-item:hover,
+toolbarbutton.bookmark-item[open="true"] {
+  background: var(--accent-color) !important;
+  color: var(--selection-text) !important;
+  border-radius: var(--general-radius) !important;
+}
+
 
 /* ==========================================================================
    3. MENU D'APPLICATION (#appMenu-popup)
@@ -200,27 +222,53 @@ menuitem:is(:hover, [_moz-menuactive="true"], [selected="true"]) > .menu-accel {
   border-radius: var(--general-radius) !important;
 }
 
-/* Bannière de compte Sync FxA */
+/* Bannière de compte Sync FxA & Promo de connexion */
 #appMenu-popup .panel-banner-item,
-#appMenu-popup #appMenu-fxa-status2 {
+#appMenu-popup #appMenu-fxa-status2,
+#appMenu-popup #appMenu-fxa-sign-in-promo,
+#PanelUI-fxa-menu-sign-in-promo {
   background: rgba(255, 255, 255, 0.05) !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
   color: var(--menu-text) !important;
   border: 1px solid var(--menu-border-color) !important;
   border-radius: var(--general-radius) !important;
   margin: 4px 6px !important;
+  padding: 8px 10px !important;
+}
+
+#appMenu-popup #appMenu-fxa-sign-in-promo .fxa-menu-sign-in-promo-heading,
+#appMenu-popup #appMenu-fxa-sign-in-promo .fxa-menu-sign-in-promo-message {
+  color: var(--menu-text) !important;
+  font-weight: 500 !important;
+}
+
+#appMenu-popup #appMenu-fxa-sign-in-promo #appMenu-fxa-sign-in-promo-link {
+  color: var(--accent-solid) !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+}
+
+#appMenu-popup #appMenu-fxa-sign-in-promo #appMenu-fxa-sign-in-promo-dismiss-button {
+  color: var(--menu-text) !important;
+  fill: currentColor !important;
+  border-radius: var(--general-radius) !important;
 }
 
 #appMenu-popup .panel-banner-item:hover,
-#appMenu-popup #appMenu-fxa-status2:hover {
+#appMenu-popup #appMenu-fxa-status2:hover,
+#appMenu-popup #appMenu-fxa-sign-in-promo:hover {
   background: var(--accent-color) !important;
+  background-color: var(--accent-solid) !important;
   color: var(--selection-text) !important;
 }
 
 #appMenu-popup .panel-banner-item:hover *,
-#appMenu-popup #appMenu-fxa-status2:hover * {
+#appMenu-popup #appMenu-fxa-status2:hover *,
+#appMenu-popup #appMenu-fxa-sign-in-promo:hover * {
   color: var(--selection-text) !important;
   fill: var(--selection-text) !important;
 }
+
 
 /* Séparateurs internes de #appMenu-popup */
 #appMenu-popup toolbarseparator,
