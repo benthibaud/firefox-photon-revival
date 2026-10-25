@@ -1,6 +1,6 @@
 # Note de Synthèse & Mémoire Technique — Firefox Photon Revival
 
-> **Dossier local :** `scratch/crunchy-themes/firefox_photon_theme`  
+> **Dossier local :** `scratch/firefox-photon-revival`  
 > **Dépôt Git distant :** `https://github.com/benthibaud/firefox-photon-revival.git`  
 > **Dernière mise à jour :** 25 Octobre 2026  
 > **Statut :** Thème stabilisé, audité et validé sur Firefox moderne (158+)
